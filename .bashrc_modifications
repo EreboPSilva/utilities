@@ -1,0 +1,20 @@
+# Alias
+alias lls='ls -lha'
+alias pin0='ssh -i ~/.ssh/id_rsa jmgps@156.35.56.78'
+alias pin2='ssh -i ~/.ssh/id_rsa jmgps@156.35.56.116'
+alias deg='ssh jmgps@156.35.56.120'
+
+# Exports
+#export PS1="\e[0;35m[\e[m\e[1;35m\u\e[m\e[0;35m:\W]\e[m\$ " #mac
+export PS1="\e[0;35m[\u@\e[m\e[1;35m\h\e[m\e[0;35m:\w]\e[m\$ " #server whole working directory path
+#export PS1="\e[0;35m[\u@\e[m\e[1;35m\h\e[m\e[0;35m:\W]\e[m\$ " #server only working directory no path
+
+## Exports for mac:
+#export CLICOLOR=1
+#export LSCOLORS=GxFxCxDxBxegedabagaced
+#export LC_ALL=""
+#export LC_CTYPE="en_US.UTF-8"
+
+## BLAST for mac
+#PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+#export PATH=$PATH:/usr/local/ncbi/blast/bin/
