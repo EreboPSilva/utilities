@@ -97,4 +97,3 @@ alias deg='ssh -i jmgps@156.35.56.120'
 
 # Export
 export PS1="\e[0;35m[\u@\e[m\e[1;35m\h\e[m\e[0;35m:\W]\e[m\$ "
-#old export PS1="\e[0;35m[\e[m\e[1;35m\u\e[m\e[0;35m:\W]\e[m\$ "
