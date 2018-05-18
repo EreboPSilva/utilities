@@ -96,4 +96,5 @@ alias pin0='ssh -i ~/.ssh/id_rsa jmgps@156.35.56.78'
 alias deg='ssh -i jmgps@156.35.56.120'
 
 # Export
-export PS1="\e[0;35m[\u@\e[m\e[1;35m\h\e[m\e[0;35m:\W]\e[m\$ "
+export PS1='\[\033[0;35m\]\u@\[\033[1;35m\]\h\[\033[0;35m\]:\W\[\033[0m\]\$ '
+#old export PS1="\e[0;35m[\u@\e[m\e[1;35m\h\e[m\e[0;35m:\W]\e[m\$ "
