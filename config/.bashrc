@@ -94,6 +94,7 @@ export LC_CTYPE="en_US.UTF-8"
 alias lls='ls -lah'
 alias pin0='ssh -i ~/.ssh/id_rsa jmgps@156.35.56.78'
 alias deg='ssh -i jmgps@156.35.56.120'
+alias path='readlink -f'
 
 # Export
 export PS1='\[\033[0;35m\]\u@\[\033[1;35m\]\h\[\033[0;35m\]:\W\[\033[0m\]\$ '
