@@ -8,10 +8,12 @@ my $fasta = slurp($fh);
 my @contig = split />/, $fasta;
   shift @contig;
 
-foreach my $n (@contig){
-  my @chunck = split /\n/, $n;
+for (my $n = 0; $n < scalar @contig; $n++){
+  my @chunck = split /\n/, $contig[$n];
   my $name = shift @chunck;
-  my $outfile = $name . '.fa';
+  #my $m = $n++;
+  my $number = sprintf ("%06d", $n);
+  my $outfile = 'LGEO' . $number . '.fsa';
   my $seq = join "\n", @chunck;
   my $text = '>' . $name . "\n" . $seq . "\n";
   
