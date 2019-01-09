@@ -32,7 +32,7 @@ $last++;
 warn join ', ', @maxish;
 warn join ', ', @max;
 
-my $result;
+my $result = '# ' . $fh . "\n";
 
 for (my $s = 1; $s <= $last; $s++){
   $result .= $s;
