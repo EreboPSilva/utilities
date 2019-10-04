@@ -17,8 +17,9 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
+HISTSIZE=100000
 HISTFILESIZE=20000
+hopt -s histappend
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -28,38 +29,6 @@ shopt -s checkwinsize
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
-
-## set a fancy prompt (non-color, unless we know we "want" color)
-#case "$TERM" in
-#    xterm-color|*-256color) color_prompt=yes;;
-#esac
-#
-#if [ -n "$force_color_prompt" ]; then
-#    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-#	# We have color support; assume it's compliant with Ecma-48
-#	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-#	# a case would tend to support setf rather than setaf.)
-#	color_prompt=yes
-#    else
-#	color_prompt=
-#    fi
-#fi
-#
-#if [ "$color_prompt" = yes ]; then
-#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-#else
-#    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-#fi
-#unset color_prompt force_color_prompt
-#
-## If this is an xterm set the title to user@host:dir
-#case "$TERM" in
-#xterm*|rxvt*)
-#    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-#    ;;
-#*)
-#    ;;
-#esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -89,13 +58,64 @@ fi
 
 export LC_ALL=""
 export LC_CTYPE="en_US.UTF-8"
+export TERM=xterm
 
 # Alias
 alias lls='ls -lah'
-alias pin0='ssh -i ~/.ssh/id_rsa jmgps@156.35.56.78'
-alias deg='ssh -i jmgps@156.35.56.120'
+alias ttt='tmux a -t turri'
+alias pin2='ssh -i ~/.ssh/id_rsa jmgps@156.35.56.116'
+alias labo='ssh -i ~/.ssh/id_rsa labo@156.35.56.78'
+alias geo='ssh -i ~/.ssh/id_rsa george@156.35.56.116'
+alias deg='ssh jmgps@156.35.56.120'
 alias path='readlink -f'
+alias sspace_long='perl /home/jmgps/jmgps/downloads/SSPACE-LongRead_v1-1/SSPACE-LongRead.pl'
+alias tbl2asn='/data/programs/tbl2asn'
 
 # Export
+#expor tPS1="\e[0;35m[\u@\e[m\e[1;35m\h\e[m\e[0;35m:\W]\e[m\$ "
 export PS1='\[\033[0;35m\]\u@\[\033[1;35m\]\h\[\033[0;35m\]:\W\[\033[0m\]\$ '
-#old export PS1="\e[0;35m[\u@\e[m\e[1;35m\h\e[m\e[0;35m:\W]\e[m\$ "
+export PATH="/data/programs/mummer-4.0.0beta2/:$PATH"
+export PATH="/data/programs/MIX-master/bin/:$PATH"
+export PATH="$PATH:/data/programs/sratoolkit.2.9.0-centos_linux64/bin/"
+export PATH="$PATH:/data/programs/cufflinks/src/"
+export PATH="$PATH:/data/programs/SPAdes-3.12.0-Linux/bin/"
+export PATH="$PATH:/data/programs/Quake/bin/"
+export PATH="$PATH:/data/programs/trimmomatic/"
+export PATH="$PATH:/data/programs/kallisto_linux-v0.44.0/"
+export PATH="$PATH:/data/programs/CISA1.3/"
+export PATH="$PATH:/data/programs/stringtie-1.3.4d/"
+export PATH="$PATH:/usr/local/bin/miniconda43/bin/"
+export PATH="$PATH:/mnt/nas1/jmgps/downloads/proovread/bin/"
+export PATH="$PATH:/home/jmgps/jmgps/downloads/SSPACE-LongRead_v1-1/"
+
+#A command to see failed disks
+file="/home/.disks_comprobations_tmp"
+if [ -f $file ]; then
+    result=$(grep 'Failed' $file)
+    if [ "$result" ]; then
+        echo "$(tput setaf 1) $(tput bold) $result $(tput sgr0)" | sed 's/ *phy/--> phy/g'
+    fi
+fi
+
+# A command to auto-extract files
+extract () {
+   if [ -f $1 ] ; then
+       case $1 in
+        *.tar.bz2)      tar xvjf $1 ;;
+        *.tar.gz)       tar xvzf $1 ;;
+        *.tar.xz)       tar Jxvf $1 ;;
+        *.bz2)          bunzip2 $1 ;;
+        *.rar)          unrar x $1 ;;
+        *.gz)           gunzip $1 ;;
+        *.tar)          tar xvf $1 ;;
+        *.tbz2)         tar xvjf $1 ;;
+        *.tgz)          tar xvzf $1 ;;
+        *.zip)          unzip $1 ;;
+        *.Z)            uncompress $1 ;;
+        *.7z)           7z x $1 ;;
+        *)              echo "don't know how to extract '$1'..." ;;
+       esac
+   else
+       echo "'$1' is not a valid file!"
+   fi
+}
