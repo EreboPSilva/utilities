@@ -11,6 +11,4 @@ set wrap linebreak nolist "Soft wrap (without inserting new line).
 set expandtab     "┐
 set shiftwidth=4  "├These allow vim to use spaces instead of tabs... 
 set softtabstop=4 "┘
-set autoindent
-
-
+"set autoindent
